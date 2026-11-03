@@ -1,0 +1,34 @@
+{
+  "calculus": {
+    "limits": [
+      {"title":"Limits introduction","url":"https://tutorial.math.lamar.edu/Classes/CalcI/LimitsIntro.aspx","description":"Read the introduction and work through a limit example.","estimated_minutes":8},
+      {"title":"Limit practice problems","url":"https://tutorial.math.lamar.edu/Problems/CalcI/LimitsIntro.aspx","description":"Attempt a small selection of practice problems, then check the solutions.","estimated_minutes":12}
+    ],
+    "derivatives": [
+      {"title":"Derivative introduction","url":"https://tutorial.math.lamar.edu/Classes/CalcI/DerivativeIntro.aspx","description":"Review the definition and a worked derivative example.","estimated_minutes":8},
+      {"title":"Derivative practice problems","url":"https://tutorial.math.lamar.edu/Problems/CalcI/DerivativeIntro.aspx","description":"Practice using the derivative definition.","estimated_minutes":12}
+    ],
+    "integrals": [
+      {"title":"Indefinite integrals","url":"https://tutorial.math.lamar.edu/Classes/CalcI/IndefiniteIntegrals.aspx","description":"Review antiderivatives and a worked integral example.","estimated_minutes":8},
+      {"title":"Integral practice problems","url":"https://tutorial.math.lamar.edu/Problems/CalcI/IndefiniteIntegrals.aspx","description":"Attempt a small set of indefinite integral problems.","estimated_minutes":12}
+    ]
+  },
+  "python": {
+    "variables": [
+      {"title":"Python numbers and variables","url":"https://docs.python.org/3/tutorial/introduction.html#numbers","description":"Read the assignment examples and try changing their values.","estimated_minutes":8},
+      {"title":"Python strings","url":"https://docs.python.org/3/tutorial/introduction.html#text","description":"Practice assigning and combining strings in the interpreter.","estimated_minutes":12}
+    ],
+    "loops": [
+      {"title":"Python for statements","url":"https://docs.python.org/3/tutorial/controlflow.html#for-statements","description":"Review iteration and run the examples.","estimated_minutes":8},
+      {"title":"Python range function","url":"https://docs.python.org/3/tutorial/controlflow.html#the-range-function","description":"Write a few short loops using range.","estimated_minutes":12}
+    ],
+    "functions": [
+      {"title":"Defining Python functions","url":"https://docs.python.org/3/tutorial/controlflow.html#defining-functions","description":"Review function definitions and return values.","estimated_minutes":8},
+      {"title":"Function arguments","url":"https://docs.python.org/3/tutorial/controlflow.html#more-on-defining-functions","description":"Practice defaults and keyword arguments.","estimated_minutes":12}
+    ],
+    "recursion": [
+      {"title":"Python function calls","url":"https://docs.python.org/3/reference/expressions.html#calls","description":"Review call behavior, then write a recursive countdown with a base case.","estimated_minutes":8},
+      {"title":"Python function definitions","url":"https://docs.python.org/3/reference/compound_stmts.html#function-definitions","description":"Use the function rules to implement and trace a small recursive factorial.","estimated_minutes":12}
+    ]
+  }
+}
