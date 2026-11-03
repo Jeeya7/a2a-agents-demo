@@ -1,0 +1,13 @@
+{
+  "calculus": {
+    "limits": "medium",
+    "derivatives": "easy",
+    "integrals": "hard"
+  },
+  "python": {
+    "variables": "easy",
+    "loops": "medium",
+    "functions": "medium",
+    "recursion": "hard"
+  }
+}
