@@ -1,6 +1,6 @@
 """Shared message contracts and deterministic planning/checking logic."""
-from collections import Counter
 import json
+from collections import Counter
 from pathlib import Path
 from typing import Literal
 

@@ -11,6 +11,30 @@ the official `a2a-sdk`. Each agent runs in its own process and publishes an Agen
 
 ## Three-agent quickstart
 
+### Browser presentation (recommended for the workshop)
+
+```powershell
+.\run-visual.cmd
+```
+
+Open **http://127.0.0.1:8080**. Click **Run the demo** to watch the three-agent
+network, a readable conversation, the checker rejection, and the repaired plan.
+The browser server starts its own agents on ports 8100-8102 and stops them when
+you stop the server with Ctrl+C. No new packages are needed.
+
+- **Pause / Next step / Replay:** present the actual execution events at your pace.
+  These controls pause playback, not the agent execution. The page labels this.
+- **Study guide:** the approved schedule and complete resource list.
+- **View Agent Card:** the actual discovery document from each running agent.
+- **Under the hood:** real A2A message IDs, task states, and structured payloads.
+- **Planner mode:** scripted, with no API calls by default; Gemini is optional.
+
+Browser events come from the real workflow over a local event stream. This is
+an interface to the existing A2A agents, not a separate animated simulation.
+Use `--port 8085 --base-port 8200` if the default ports are occupied.
+
+### Terminal presentation
+
 The `.venv` has been installed on this computer. In PowerShell in this folder:
 
 ```powershell
@@ -115,6 +139,9 @@ membership, coverage and budgets, not live URL availability or academic quality.
 - `a2a_demo/domain.py`: contracts, allocation, selection, and validation
 - `a2a_demo/resources.json`: curated resource collection
 - `run_demo.py`: process lifecycle, CLI, and final study guide
+- `visual_demo.py`: local browser server and execution event stream
+- `a2a_demo/web/`: the visual interface, playback controls, and guide display
+- `a2a_demo/observer.py`: optional event reporting, inactive in the terminal demo
 - `main.py`: original single-agent demo retained below
 
 ## Install elsewhere and test

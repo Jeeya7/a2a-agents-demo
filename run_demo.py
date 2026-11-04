@@ -20,10 +20,11 @@ ROOT = Path(__file__).resolve().parent
 
 class DemoCluster:
     """Own and stop only the child processes started by this launcher."""
-    def __init__(self, base_port=8000, quiet=False):
+    def __init__(self, base_port=8000, quiet=False, environment=None):
         if not 1024 <= base_port <= 65533:
             raise ValueError('Base port must be between 1024 and 65533.')
         self.base_port, self.quiet = base_port, quiet
+        self.environment = environment or {}
         self.processes, self.threads = [], []
 
     def __enter__(self):
@@ -39,7 +40,8 @@ class DemoCluster:
                 process = subprocess.Popen([sys.executable, '-u', '-m', 'a2a_demo.server', role,
                     '--base-port', str(self.base_port)], cwd=ROOT,
                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
-                    encoding='utf-8', errors='replace', creationflags=flags)
+                    encoding='utf-8', errors='replace', creationflags=flags,
+                    env={**os.environ, **self.environment})
                 self.processes.append(process)
                 thread = threading.Thread(target=self._forward, args=(role, process), daemon=True)
                 thread.start()
@@ -83,6 +85,9 @@ class DemoCluster:
                 process.wait(timeout=5)
         for thread in self.threads:
             thread.join(timeout=1)
+        for process in self.processes:
+            if process.stdout:
+                process.stdout.close()
 
     def __exit__(self, *args):
         self.stop()

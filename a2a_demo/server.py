@@ -2,22 +2,39 @@
 import argparse
 import os
 
-from a2a.helpers import get_data_parts, new_data_part, new_task_from_user_message, new_text_message
+import uvicorn
+from a2a.helpers import (
+    get_data_parts,
+    new_data_part,
+    new_task_from_user_message,
+    new_text_message,
+)
 from a2a.server.agent_execution import AgentExecutor, RequestContext
 from a2a.server.events import EventQueue
 from a2a.server.request_handlers import DefaultRequestHandler
 from a2a.server.routes import create_agent_card_routes, create_jsonrpc_routes
 from a2a.server.tasks import InMemoryTaskStore, TaskUpdater
-from a2a.types import AgentCapabilities, AgentCard, AgentInterface, AgentSkill, TaskState
+from a2a.types import (
+    AgentCapabilities,
+    AgentCard,
+    AgentInterface,
+    AgentSkill,
+    TaskState,
+)
 from dotenv import load_dotenv
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
 from starlette.routing import Route
-import uvicorn
 
-from a2a_demo.domain import (ROOT, CheckRequest, ResourceRequest, StudyRequest,
-    check_plan, find_resources)
-from a2a_demo.transport import AgentFailure, NAMES, ROLES, endpoint
+from a2a_demo.domain import (
+    ROOT,
+    CheckRequest,
+    ResourceRequest,
+    StudyRequest,
+    check_plan,
+    find_resources,
+)
+from a2a_demo.transport import NAMES, ROLES, AgentFailure, endpoint
 from a2a_demo.workflow import run_planner
 
 DESCRIPTIONS = {
@@ -62,7 +79,7 @@ class StudyExecutor(AgentExecutor):
                 print('[Schedule Checker] ' + ('APPROVED' if result['approved'] else '; '.join(result['issues'])), flush=True)
             await updater.add_artifact(parts=[new_data_part({'ok': True, 'data': result}, 'application/json')], name='result')
             await updater.update_status(TaskState.TASK_STATE_COMPLETED)
-        except Exception as exc:
+        except Exception as exc:  # noqa: BLE001
             # No raw provider payloads or credentials enter artifacts or console logs.
             message = str(exc)[:1600] if isinstance(exc, (ValueError, AgentFailure)) else f'{NAMES[self.role]} failed ({type(exc).__name__}). Check that all agents are running.'
             await updater.add_artifact(parts=[new_data_part({'ok': False, 'error': message}, 'application/json')], name='error')
